@@ -1,4 +1,5 @@
 require('dotenv').config();
+const commands = require('./commands.json');
 const tmi = require('tmi.js');
 
 const client = new tmi.Client({
@@ -10,7 +11,7 @@ const client = new tmi.Client({
     username: process.env.USERNAME,
     password: process.env.TWITCH_OAUTH_TOKEN
   },
-  channels: ['myChannel']
+  channels: [process.env.USERNAME2]
 });
 
 client.connect();
@@ -30,11 +31,15 @@ client.on('message', (channel, tags, message, self) => {
   }
 
   if(message.toLowerCase() === '!culasso') {
-    client.say(channel,`/me @${tags.username}, que culasso x00bexXerecao `);
+    client.say(channel,`/me @${tags.username}, que culasso!`);
   }
 
   if(message.toLowerCase() === '!pesca') {
     client.say(channel,`/me @${tags.username}, você pescou um(a) ${sortFish()}`);
+  }
+
+  if(message.toLowerCase() === '!commands') {
+    client.say(channel,`/me ${list_commands_function()}`);
   }
 });
 
@@ -54,4 +59,10 @@ function sortFish(){
   max = Math.floor(fishes.length);
   let sorted = Math.floor(Math.random() * (max-min)) + min;
   return fishes[sorted];
+}
+
+function list_commands_function(){
+  //get an array from "command_list" json key
+  list_commands = commands['command_list'].sort();
+  return list_commands.join(); //  '!x', '!y', '!z'
 }

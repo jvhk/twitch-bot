@@ -27,3 +27,20 @@ function sortFish(){
 }
 
 console.log(sortFish());*/
+
+
+
+
+/*
+const commands = require('./commands.json');
+
+function list_commands_function(){
+  //get an array from "command_list" json key
+  list_commands = commands['command_list'];
+  return list_commands.join(); // [ '!x', '!y', '!z' ]
+}
+
+console.log(list_commands_function())
+*/
+
+
