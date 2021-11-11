@@ -1,5 +1,5 @@
 require('dotenv').config();
-const commands = require('./commands.json');
+const commands = require('./commands_hk.json');
 const tmi = require('tmi.js');
 
 const client = new tmi.Client({
@@ -22,20 +22,16 @@ client.on('message', (channel, tags, message, self) => {
     return; 
   }
 
-  /* debug log
-  console.log(`PASSEI DO PRIMEIRO IF`);
-  */
-
-  if(message.toLowerCase() === '!go') {
-    client.say(channel,`/me @${tags.username}, não recomendamos que você mexa com go`);
-  }
-
-  if(message.toLowerCase() === '!culasso') {
-    client.say(channel,`/me @${tags.username}, que culasso!`);
-  }
-
   if(message.toLowerCase() === '!pesca') {
     client.say(channel,`/me @${tags.username}, você pescou um(a) ${sortFish()}`);
+  }
+
+  if(message.toLowerCase() === '!github') {
+    client.say(channel,`/me @${tags.username}, segue lá pra ver mais coisas feias https://github.com/jvhk`);
+  }
+
+  if(message.toLowerCase() === '!twitter') {
+    client.say(channel,`/me @${tags.username}, impressionante a quantidade de besteira que consigo falar aqui https://twitter.com/joaovdoc `);
   }
 
   if(message.toLowerCase() === '!commands') {
